@@ -1,11 +1,15 @@
-function playerPlay() {
-    let answer = (prompt("Rock, Paper, Scissors?", "")).toLowerCase();
-    const validChoices = ["rock", "paper", "scissors"];
-    while (!validChoices.includes(answer)) {
-        answer = (prompt("Invalid input. Try again", "")).toLowerCase();
-    }
-    return answer;
-}
+const choices = document.querySelectorAll('img');
+const display = document.querySelector('p');
+const youpoints = document.querySelector('.you-points');
+const cppoints = document.querySelector('.cp-points');
+
+let playerPoints = 0;
+let computerPoints = 0;
+let isWinner = false;
+
+choices.forEach((choice) => {
+    choice.addEventListener('click', game)
+});
 
 function computerPlay() {
     let generateNum = Math.floor(Math.random() * 3) + 1;
@@ -19,6 +23,39 @@ function computerPlay() {
         case 3:
             return "scissors";
             break;
+    }
+}
+
+function game() {
+    if (!isWinner) {
+        console.log(this.classList.value);
+        let playerPlay = this.classList.value;
+        results = playRound(playerPlay, computerPlay());
+        display.textContent = results;
+
+        if (results.includes("Won")) {
+            playerPoints++;
+            youpoints.textContent = playerPoints;
+        } else if (results.includes("Lose")) {
+            computerPoints++;
+            cppoints.textContent = computerPoints;
+        }
+        
+       checkWinner();
+    }
+}
+
+function checkWinner() {
+    if (playerPoints == 5 || computerPoints == 5) {
+        if (playerPoints > computerPoints) {
+            display.textContent = "Game Over! You Won";
+        } else if (playerPoints < computerPoints) {
+            display.textContent = "Game Over! You Lost";
+        } else {
+            display.textContent = "Game Over! You are tied";
+        }
+
+        isWinner = true;
     }
 }
 
@@ -40,30 +77,11 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function game() {
-    let playerPoints = 0;
-    let computerPoints = 0;
-
-    for (let i = 0; i < 5; i++) {
-        let results = playRound(playerPlay(), computerPlay());
-
-        if (results.includes("Won")) {
-            playerPoints++;
-        } else if (results.includes("Lose")) {
-            computerPoints++;
-        }
-    }
-
-    let winner = checkWinner(playerPoints, computerPoints);
-    return `Game Over! ${winner} Player: ${playerPoints} Computer: ${computerPoints}`;
-}
-
-function checkWinner(playerPoints, computerPoints) {
-    if (playerPoints > computerPoints) {
-        return "You Won";
-    } else if (playerPoints < computerPoints) {
-        return "You Lost";
-    } else {
-        return "You are tied";
-    }
-}
+// function playerPlay() {
+//     let answer = (prompt("Rock, Paper, Scissors?", "")).toLowerCase();
+//     const validChoices = ["rock", "paper", "scissors"];
+//     while (!validChoices.includes(answer)) {
+//         answer = (prompt("Invalid input. Try again", "")).toLowerCase();
+//     }
+//     return answer;
+// }
