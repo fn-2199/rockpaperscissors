@@ -54,7 +54,7 @@ function checkWinner() {
         } else {
             display.textContent = "Game Over! You are tied";
         }
-
+        
         isWinner = true;
     }
 }
