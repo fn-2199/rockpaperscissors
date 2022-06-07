@@ -9,30 +9,33 @@
         <script src="./script.js" defer></script>
     </head>
 
-    <body>
+    <body onmousedown="return false" onselectstart="return false">
         <h1 class="animate__animated animate__fadeInDown">Rock, Paper, Scissors Game</h1>
 
         <div class="section2">
             <h2>Choose Your Weapon!</h2>
             <div class="choices">
                 <div>
-                    <img src="./img/rock.png" alt="rock" class="rock">
+                    <img src="./img/rock.png" alt="rock" class="hvr-glow" id="rock">
                     <div class="text">Rock</div>
                 </div>
 
                 <div>
-                    <img src="./img/paper.png" alt="paper" class="paper">
+                    <img src="./img/paper.png" alt="paper" class="hvr-glow" id="paper">
                     <div class="text">Paper</div>
                 </div>
 
                 <div>
-                    <img src="./img/scissors.png" alt="scissors" class="scissors">
+                    <img src="./img/scissors.png" alt="scissors" class="hvr-glow" id="scissors">
                     <div class="text">Scissors</div>
                 </div>
             </div>
         </div>
 
-        <p class="verbose"></p>
+        <div class="section3">
+            <p class="display"></p>
+            <div class="retry"></div>
+        </div>
 
         <div class="section4">
             <h3>Scoreboard</h3>
@@ -46,6 +49,9 @@
                     <div class="cp-points">0</div>
                 </div>
             </div>
-        </div>  
+        </div>
+
+        <audio id="hover-sound" src="./audio/digi_plink.mp3" preload="auto"></audio>
+        <audio id="click-sound" src="./audio/click_04.mp3" preload="auto"></audio>
     </body>
 </html>
